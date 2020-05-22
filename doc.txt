@@ -1,0 +1,11 @@
+代码提交规范
+类型      描述
+feat     新增feature
+fix      修复bug
+docs     修改文档
+style    修改空格、缩进、逗号等，不修改代码逻辑
+refactor 代码重构，不增删功能
+perf     优化相关，比如提升性能、体验
+test     测试用例
+chore    改变构建流程、或者增加依赖库、工具等
+revert   回滚到上一个版本
