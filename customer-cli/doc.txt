@@ -1,0 +1,18 @@
+
+mongodb
+commander
+inquirer
+
+mongodb
+https://cloud.mongodb.com
+创建账号、新增用户、添加白名单
+mongodb+srv://test:test1234@cluster0-lzkfi.mongodb.net/test?retryWrites=true&w=majority
+
+全局模式
+1.package.json添加
+1.1:perferGlobal:true,
+1.2:bin:"./command.js"
+
+2.command.js行首添加
+#!/usr/bin/env node
+
