@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const kitteySchema = mongoose.Schema({
-    name: String
+    name: String,
+    age: {type:Number,default:10,min:1,max:10}
 });
 
 kitteySchema.methods.speak = function () { 
