@@ -22,6 +22,8 @@ app.use((req, res, next)=>{
     next();
 })
 
+app.use("/assets", express.static("assets"));//转换为静态文件
+
 app.get("/", (req,res) => { 
     res.sendFile(__dirname+"/public/index.html");
 })
