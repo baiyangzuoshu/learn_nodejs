@@ -1,0 +1,18 @@
+web前端框架
+
+npm install express  --save
+npm install nodemon  --save
+npm install ejs      --save
+npm install mongoose --save
+
+use((req,res,next)=>{})--中间件
+set("view engine","ejs")--视图引擎
+
+listen(port?,()=>{})
+
+get(path,(req,res)=>{})
+post(path,(req,res)=>{})
+
+send(string)
+sendFile(filename)
+render(filename)
