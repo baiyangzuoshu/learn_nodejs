@@ -9,14 +9,16 @@ async function findAllBlogs() {
     }) 
 }
 
-function findBlogById(id) { 
-    Blog.findById(id, (err, data) => { 
-        if (err) return console.error("findById failed", err);
-        console.info("findById successed:", data);
+async function findBlogById(id) { 
+    return new Promise((resolve, reject) => { 
+        Blog.findById(id, (err, data) => { 
+            if (err) return reject({ isOk: false, error: err });
+            resolve({isOk:true,data:data})
+        })
     })
 }
 
-function addBlog(title, body) { 
+async function addBlog(title, body) { 
     var blog = new Blog;
     blog.title = title;
     blog.body = body;

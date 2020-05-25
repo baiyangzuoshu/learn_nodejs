@@ -4,6 +4,7 @@ npm install express  --save
 npm install nodemon  --save
 npm install ejs      --save
 npm install mongoose --save
+npm install body-parser --save
 
 use((req,res,next)=>{})--中间件
 set("view engine","ejs")--视图引擎

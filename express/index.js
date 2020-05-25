@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const db = require("./db/db");
+const bodyParser = require("body-parser");
 
 mongoose.connect("mongodb+srv://test:test1234@cluster0-lzkfi.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
@@ -16,7 +17,10 @@ mongoose.connection.once("open", (err) => {
 })
 
 app.set("view engine", "ejs");
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use((req, res, next)=>{ 
     console.log("next");
     next();
@@ -28,21 +32,22 @@ app.get("/", (req,res) => {
     res.sendFile(__dirname+"/public/index.html");
 })
 
-app.post("/findBlogById", (req, res) => { 
-    res.send("findBlogById"+req.params.id);
-})
-
 app.get("/profile", (req, res) => { 
     res.render("profile", {name:"EJS"});
 })
 
 app.get("/getBlogs", async (req, res) => {
-    let result=await db.findAllBlogs();
+    let result = await db.findAllBlogs();
     res.send(result);
 })
 
 app.post("/addBlogs", async (req, res) => { 
-    let result=await db.addBlog(req.params.title, req.params.body);
+    let result=await db.addBlog(req.body.title, req.body.body);
+    res.send(result);
+})
+
+app.post("/findBlogById", async (req, res) => { 
+    let result = await db.findBlogById(req.body.id);
     res.send(result);
 })
 
