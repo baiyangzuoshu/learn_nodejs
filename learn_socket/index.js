@@ -11,7 +11,6 @@ io.on("connection", (socket) => {
     });
 
     socket.on("typing", (data) => { 
-        console.log("broadcast");
         socket.broadcast.emit("typing",data);
     })
 })
@@ -19,10 +18,6 @@ io.on("connection", (socket) => {
 server.listen(3000, (data) => { 
     console.log(`listen 3000,${data}`);
 });
-
-// app.get("/", (req,res) => { 
-//     res.render("index");
-// })
 
 app.use(express.static("public"));
 

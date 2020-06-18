@@ -7,7 +7,6 @@ var output = document.getElementById("output");
 var feedback = document.getElementById("feedback");
 
 btn.addEventListener("click", () => { 
-    console.log("click");
     socket.emit("chat", {
         message:message.value,
         handle: handle.value
@@ -16,17 +15,14 @@ btn.addEventListener("click", () => {
 })
 
 socket.on("chat", (data) => {
-    console.log("chat");
     feedback.innerHTM = ""
     output.innerHTML+=`<p><strong>${data.handle}:${data.message}</strong></p>`
 })
 
 message.addEventListener("keypress", () => { 
-    console.log("keypress")
     socket.emit("typing", handle.value);
 })
 
 socket.on("typing", (data) => { 
-    console.log("typeing");
     feedback.innerHTML=`<p><em>${data}正在输入...</em></p>`
 })
