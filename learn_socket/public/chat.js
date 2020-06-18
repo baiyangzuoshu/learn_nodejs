@@ -15,14 +15,21 @@ btn.addEventListener("click", () => {
 })
 
 socket.on("chat", (data) => {
-    feedback.innerHTM = ""
+    feedback.innerHTML = "";
     output.innerHTML+=`<p><strong>${data.handle}:${data.message}</strong></p>`
 })
 
 message.addEventListener("keypress", () => { 
-    socket.emit("typing", handle.value);
+   //socket.emit("typing", handle.value); 
 })
 
 socket.on("typing", (data) => { 
     feedback.innerHTML=`<p><em>${data}正在输入...</em></p>`
 })
+
+document.onkeypress = function (e) { 
+    console.log(e.target.id);
+    if (e.target.id == "message") { 
+        socket.emit("typing", handle.value);
+    }
+}
