@@ -1,0 +1,36 @@
+express
+socket.io
+
+http单项传递，只能由客户端发起请求。
+    client              server
+             request->
+             <-response
+             request->
+             <-response
+
+socket.io双端发起请求。
+    client              server
+             告知链接->
+             <-链接成功
+             <-开始通讯->
+             <-通讯结束->
+
+app:    express()
+server: require("http").createServer(app)
+io:     require("socket.io")(server)
+app.use(express.static("public"))
+
+server.listen(3000,(req,res)=>{})
+io.on("connection",()=>{})
+
+客户端监听
+clientSocket.emit("chat",data)
+clientSocket.on("chat",(data)=>{})
+服务端监听
+serverSocket.on("chat",(data)=>{
+    io.sockets.emit("chat",data)
+})
+广播
+
+
+
